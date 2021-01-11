@@ -24,7 +24,7 @@ public class Animal {
         this.FechaNacimiento = FechaNacimiento;
         this.Nombre = Nombre;
         this.Tipo = Tipo;
-        this.Peso = Peso;
+        this.Peso = peso;
         this.Estado = Estado;
         Contador++;
     }
@@ -87,5 +87,24 @@ public class Animal {
         this.Peso += cantidadGramos;
         
     }
+    
+        public void dormir(){
+       
+            this.Estado = "dormir";
+        
+    }
+            
+        public void depertar(){
+       
+            this.Estado = "despierto";
+        
+    }
+            
+        public void descansar(){
+       
+            this.Estado = "reposo";
+        
+    }
+
     
 }
