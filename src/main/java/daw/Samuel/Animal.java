@@ -16,11 +16,11 @@ public class Animal {
     private LocalDate FechaNacimiento;
     private String Nombre;
     private String Tipo;
-    private int Peso;
+    private double Peso;
     private String Estado;
     private static int Contador;
 
-    public Animal(LocalDate FechaNacimiento, String Nombre, String Tipo, int peso, String Estado) {
+    public Animal(LocalDate FechaNacimiento, String Nombre, String Tipo, double peso, String Estado) {
         this.FechaNacimiento = FechaNacimiento;
         this.Nombre = Nombre;
         this.Tipo = Tipo;
@@ -29,7 +29,6 @@ public class Animal {
         Contador++;
     }
 
-    
     public Animal() {
         this.FechaNacimiento = FechaNacimiento.now();
         this.Nombre = "Turrón";
@@ -51,7 +50,7 @@ public class Animal {
         return Tipo;
     }
 
-    public int getPeso() {
+    public double getPeso() {
         return Peso;
     }
 
@@ -71,7 +70,7 @@ public class Animal {
         this.Tipo = Tipo;
     }
 
-    public void setPeso(int peso) {
+    public void setPeso(double peso) {
         this.Peso = peso;
     }
 
@@ -79,32 +78,79 @@ public class Animal {
         this.Estado = Estado;
     }
 
-    public void comer(double cantidadGramos){
-        if(cantidadGramos < 0){
-           cantidadGramos*=(- 1);
-           this.Peso -= cantidadGramos;
+    public void comer(double cantidadGramos) {
+        if (cantidadGramos < 0) {
+            cantidadGramos *= (- 1);
+
         }
         this.Peso += cantidadGramos;
-        
+        this.Estado = "comiendo";
+
     }
-    
-        public void dormir(){
-       
-            this.Estado = "dormir";
-        
+
+    public void dormir() {
+
+        this.Estado = "dormido";
+
     }
-            
-        public void depertar(){
-       
-            this.Estado = "despierto";
-        
+
+    public void depertar() {
+
+        this.Estado = "despierto";
+
     }
-            
-        public void descansar(){
-       
-            this.Estado = "reposo";
+
+    public void descansar() {
+
+        this.Estado = "reposo";
+
+    }
+
+    public void jugar(int cantidadMinutos) {
+        this.Estado = "jugando";
+        if (cantidadMinutos < 0) {
+            cantidadMinutos *= -1;
+        }
+        // Si la cantidad de minutos es mayor o igual a 30...
+        if (cantidadMinutos >= 30 && cantidadMinutos <= 180) {
+            // Si el resto de 30 es 0, es decir que es 30 ...
+            if (cantidadMinutos % 30 == 0) {
+                do {
+                    // se añadirá un valor más a c
+                    cantidadMinutos -= 30;
+                    this.Peso -= 20;
+                } while (cantidadMinutos >= 30);
+                this.Peso -= 10;
+            } else if (cantidadMinutos % 30 != 0) {
+                do {
+                    cantidadMinutos -= 30;
+                } while (cantidadMinutos > 30);
+                this.Peso -= 10;
+            }
+            // Si supera los 180 minutos
+        } else if (cantidadMinutos > 180) {
+            // Lanzará esta excepción
+            throw new IllegalArgumentException("IAE");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Animal{" + "FechaNacimiento=" + FechaNacimiento + ", Nombre=" + Nombre + ", Tipo=" + Tipo + ", Peso=" + Peso + ", Estado=" + Estado + '}';
+    }
+
+    public Animal clonar(Animal pet) {
+        if (pet == null) {
+            return new Animal();
+        } else {
+            Animal pet2 = new Animal(pet.FechaNacimiento, pet.Nombre, pet.Tipo, pet.Peso, pet.Estado);
+            return pet2;
+        }
         
     }
 
-    
+    public int getContadorInstancias() {
+        return Contador;
+    }
+
 }
