@@ -6,7 +6,9 @@
 package daw.programa;
 
 import daw.Samuel.Animal;
+import daw.Samuel.Estado;
 import daw.Samuel.Persona;
+import daw.Samuel.Tipo;
 import java.time.LocalDate;
 
 /**
@@ -16,8 +18,9 @@ import java.time.LocalDate;
 public class Prueba {
 
     public static void main(String[] args) {
+        //Creo los animales y a las personas
         Animal a1 = new Animal();
-        Animal a2 = new Animal(LocalDate.of(2021, 12, 12), "trueno", "perro", 1120.0, "dormido");
+        Animal a2 = new Animal(LocalDate.of(2021, 12, 12), "trueno", Tipo.PERRO, 1120.0, Estado.DURMIENDO);
         Persona p1 = new Persona("Pepe", 21);
         Persona p2 = new Persona("Paco", 41);
         // Dos personas
